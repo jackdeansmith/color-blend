@@ -1,6 +1,26 @@
-.App {
-  text-align: center;
+.app {
+  display: grid;
+  grid-template-rows: 6rem 1fr;
+  grid-template-columns: repeat(3, 1fr);
+  min-height: 100vh;
+  grid-row-gap: 0;
+  grid-column-gap: 0;
+}
+
+.app-header {
+  grid-column: 1 / end;
+  background-color: white;
+
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
+}
+
+.app-header-text {
+  text-align: center;
+
+  color: black;
+  font-size: 3rem;
+  font-weight: bolder;
+  font-family: Helvetica, "Trebuchet MS", Verdana, sans-serif;
 }

@@ -1,0 +1,10 @@
+.inputPicker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputPicker-picker {
+    padding: 20px;
+}

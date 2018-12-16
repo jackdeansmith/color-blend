@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import './App.css';
 import chroma from 'chroma-js';
-import Blender from './Components/Blender/Blender'
-import Output from './Components/Output/Output'
+import InputPicker from './Components/InputPicker/InputPicker';
+import BlendChooser from './Components/BlendChooser/BlendChooser';
 
-function blend(color1, color2, blendAmmount){
-  return chroma.mix(color1, color2 , blendAmmount, 'lab');
-}
+import './App.css';
+import './Reset.css';
 
 class App extends Component {
   constructor(props) {
@@ -15,35 +13,50 @@ class App extends Component {
     this.state = {
       color1: chroma('hotpink'),
       color2: chroma('cyan'),
-      blendAmmount: 0.5,
+      blend: 0.5,
     }
   }
 
   render() {
+
+    const color1Shadow = {
+      textShadow: `-10px 10px 4px ${this.state.color1.hex('rgb')}`,
+    };
+
+    const color2Shadow = {
+      textShadow: `10px 10px 4px ${this.state.color2.hex('rgb')}`,
+    };
+
     return (
-      <div className="App">
-        <div className="Header">
-          <h1>Color Blender</h1>
+      <div className="app">
+        <div className="app-header">
+          <h1 className="app-header-text">
+          <span style={color1Shadow}>Color</span>
+          <span> </span>
+          <span style={color2Shadow}>Blend</span>
+          </h1>
         </div>
-        <Blender
-          color1={this.state.color1}
-          color2={this.state.color2}
-          blendAmmount={this.state.blendAmmount}
-          onBlendChange={this.onBlendChange}
-          onColor1Change={this.onColor1Change}
-          onColor2Change={this.onColor2Change}
+        <InputPicker
+          color={this.state.color1}
+          onChange={this.onColor1Change}
         />
-        <Output
-          colorOut={blend(this.state.color1, this.state.color2, this.state.blendAmmount)}
+        <BlendChooser
+          value={this.state.blend}
+          onChange={this.onBlendChange}
           color1={this.state.color1}
           color2={this.state.color2}
+          blendedColor={this.state.blendedColor}
+        />
+        <InputPicker
+          color={this.state.color2}
+          onChange={this.onColor2Change}
         />
       </div>
     );
   }
 
-  onBlendChange = (blendAmmount) => {
-    this.setState({ blendAmmount });
+  onBlendChange = (blend) => {
+    this.setState({ blend });
   }
 
   onColor1Change = (color1) => {

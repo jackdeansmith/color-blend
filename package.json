@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "chroma-js": "^2.0.2",
+    "copy-to-clipboard": "^3.0.8",
     "rc-slider": "^8.6.4",
     "react": "^16.6.3",
     "react-color": "^2.14.1",
